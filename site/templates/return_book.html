@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="rightCol">
+{% for category, message in get_flashed_message(with categories=true) %}
+    <h2 class="{{category}}">{{message}}</h2>
+    <br><br>
+{% endfor %}
+
+    {% if books %}
+        <h1>All the books you borrowed from the library</h1>
+        <form method="post">
+            <table>
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Year</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for book in books %}
+                    <tr>
+                        <td><input type="checkbox" name="{{book.id}}"></td>
+                        <td>{{book.id}}</td>
+                        <td>{{book.title}}</td>
+                        <td>{{book.author}}</td>
+                        <td>{{book.year}}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <center>
+                <button type="submit" class="minWidth">Return books</button>
+                <button type="reset" class="minWidth">Reset</button>
+            </center>
+        </form>
+    {% else %}
+    <h1>No books yet</h1>
+    {% endif %}
+</div>
+{% endblock %}

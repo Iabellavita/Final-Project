@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="addBookCol">
+
+{% for category, message in get_flashed_message(with categories=true) %}
+    <h2 class="{{category}}">{{message}}</h2>
+    <br><br>
+{% endfor %}
+
+    <h1>Add new book</h1><p></p>
+
+    <form method="post">
+        <h2>Book</h2><br>
+        <input type="text" id="title" name="title" placeholder="Title" required>
+        <input type="text" id="author" name="author" placeholder="Author" required>
+        <input type="text" id="year" name="year" placeholder="Year" required>
+
+
+        <br><br>
+
+        <center>
+            <button type="submit" class="minWidth">Add book</button>
+            <button type="reset" class="minWidth">Reset</button>
+        </center>
+    </form>
+
+{#
+    <form method="post">
+        {{ form.csrf_token() }}
+
+        {% for field in form if field.name != 'csrf_token' %}
+            <p>{{ field.label() }}</p>
+            <p>{{ field }}
+                {% for error in field.errors %}
+                    {{ error }}
+                {% endfor %}
+            </p>
+        {% endfor %}
+    </form>
+#}
+
+</div>
+{% endblock %}

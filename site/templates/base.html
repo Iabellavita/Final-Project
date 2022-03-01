@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Lib by Andrii Tkachuk</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link rel="stylesheet" type="text/css" href="../static/style/style.css" media="all">
+</head>
+<body>
+<div class="wrapper">
+    <div class="header">
+        <div class="headerContent">
+            <div class="left"><h1><a href="/">LIB</a></h1>
+                <p>Library ITEA Advanced by ANDRII TKAHUK</p></div>
+            <div class="right">
+            </div>
+        </div>
+    </div>
+    <div class="slider">
+        <div class="itemSlider">
+            <div class="bgSlide"><img src="../static/images/bg-slide.jpg"></div>
+            <div class="descSlide">
+                <h1>Library ITEA Advanced</h1>
+                <p>Final project</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="nav">
+        {% if current_user.is_authenticated %}
+            <label class="userInfo">Hello, {{current_user.get_name()}}!</label>
+        {% else %}
+            <label class="userInfo">Hello,Guest!</label>
+        {% endif %}
+
+        <ul class="menu">
+            <li><a href="/">Home</a></li>
+            {% if not current_user.is_authenticated %}
+                <li><a href="login">Sign In</a></li>
+                <li><a href="registration">Sign Up</a></li>
+            {% else %}
+                <li><a href="Logout">Sign out</a></li>
+            {% endif %}
+        </ul>
+    </div>
+
+    <div class="main">
+
+        <div class="leftCol">
+            <form>
+                <h2>General menu</h2>
+                <ul class="general_menu">
+                    <li><a href="books">All books</a></li>
+                    <li><a href="add_book">Add book</a></li>
+                    <li><a href="delete_book">Delete book</a></li>
+                    <li><a href="take_book">Take book</a></li>
+                    <li><a href="return_book">Return book</a></li>
+                </ul>
+            </form>
+        </div>
+
+        {% block content %}{% endblock %}
+
+    </div>
+
+    <div class="footer">
+        <div class="footerContent">
+            <h1>Copyright © 2022 ANDRII TKACHUK</h1>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
